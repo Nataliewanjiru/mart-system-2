@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import './App.css'
+import MartLogin from './MartLogin'
+import {Route, Routes } from 'react-router-dom';
 
 function App() {
 
   return (
     <>
-    <p>Hello</p>
+      <Routes>
+        <Route path="/login" element={<MartLogin />} />
+      </Routes>
     </>
   )
 }
