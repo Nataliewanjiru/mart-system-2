@@ -66,7 +66,7 @@ function  MartLogin() {
             <input type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <button type="submit">Log In</button>
           </form>
-          <button><Link to="/martregister">Account not found</Link></button>
+          <button><Link to="/martregister">Do not have an account</Link></button>
         </div>
       </div>
     </div>

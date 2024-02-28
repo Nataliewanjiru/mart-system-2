@@ -1,0 +1,89 @@
+import React, { useState } from "react";
+import axios from "axios";
+import {Link, useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
+
+
+
+
+const MartRegister = () => {
+    const [formData, setFormData] = useState({
+        first_name: "",
+        last_name: "",
+        username:"",
+        email: "",
+        password: "",
+        phoneNumber:"",
+        usertype:"driver",
+    });
+  
+
+    const { first_name, last_name,username, email, password, phoneNumber,usertype} = formData;
+
+    
+    let navigate = useNavigate()
+
+    const signUp = async (e) => {
+        e.preventDefault();
+        
+        try {
+            if (first_name && last_name && username && email && password && phoneNumber) {
+            const response = await axios.post("http://127.0.0.1:5070/register", formData);
+            swal({
+                title: 'Success',
+                text: 'Please verify your email for complete registration',
+                icon: 'success',
+              });
+                        
+            // Clear the form inputs after submission
+            setFormData({
+                first_name: "",
+                last_name: "",
+                username:"",
+                email: "",
+                password: "",
+            });
+            navigate("/martverification")
+        }
+        else{
+            swal({
+                title: 'Error',
+                text: 'Please fill in all the inputs',
+                icon: 'error',
+              });
+             }
+
+        } catch (error) {
+            swal({
+                title: 'Error',
+                text: 'Please confirm or change the email or username',
+                icon: 'error',
+              });
+             }
+             
+};
+
+    return (
+        <div className="signUpBody">
+      
+        <div className="sign-up-parent">
+        <div className="sign-up-container">
+        <h1>Create Account</h1>
+            <form onSubmit={signUp}>
+                <input type="text" placeholder="Enter your first name.." value={first_name} onChange={(e) =>setFormData({ ...formData, first_name: e.target.value })}/>
+                <input type="text" placeholder="Enter your last name.." value={last_name} onChange={(e) =>setFormData({ ...formData, last_name: e.target.value })}/>
+                 <input type="text" placeholder="Enter your username.." value={username} onChange={(e) =>setFormData({ ...formData, username: e.target.value })}/>
+                 <input type="text" placeholder="Enter your phoneNumber" value={phoneNumber} onChange={(e) =>setFormData({ ...formData, phoneNumber: e.target.value })}/>
+                <input type="email" placeholder="Enter your email.." value={email} onChange={(e) => setFormData({ ...formData, email: e.target.value }) }/>
+                <input type="password" placeholder="Enter your password" value={password} onChange={(e) =>setFormData({ ...formData, password: e.target.value })}/>
+                <button type="submit">Sign Up</button>
+                </form>
+            <button>
+            <Link to="/martlogin">Already have an account</Link>
+            </button>
+        </div>
+        </div>
+        </div>
+    );
+};
+export default MartRegister
