@@ -43,7 +43,7 @@ const MartRegister = () => {
                 email: "",
                 password: "",
             });
-            navigate("/martverification")
+            navigate("/verification")
         }
         else{
             swal({

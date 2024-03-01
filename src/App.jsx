@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/martlogin" element={<MartLogin />} />
         <Route path="/martregister" element={<MartRegister />} />
-        <Route path="/martverification" element={<MartVerification />} />
+        <Route path="/verification" element={<MartVerification />} />
         <Route path="/martactivate" element={<MartActivate />} />
       </Routes>
     </>
